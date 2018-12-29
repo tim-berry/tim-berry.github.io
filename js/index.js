@@ -45,21 +45,33 @@ $(document).ready(function() {
 // METAR
 //create Tabulator on DOM element with id "example-table"
 table = new Tabulator("#weather", {
+  index: "icao",
   resizableColumns: false,
   layout: "fitColumns",
   columns: [
     //Define Table Columns
-    { title: "ICAO", field: "icao", headerSort: false },
+    {
+      title: "ICAO",
+      field: "icao",
+      headerSort: false
+    },
     {
       title: "QNH",
       field: "barometer.mb",
       headerSort: false,
       formatter: function(cell, formatterParams, onRendered) {
-        return Math.round(cell.getValue());
+          return Math.round(cell.getValue());
       }
     },
-    { title: "Direction", field: "wind.degrees", headerSort: false },
-    { title: "Speed", field: "wind.speed_kts", headerSort: false },
+    {
+      title: "Wind",
+      field: "wind.degrees",
+      headerSort: false,
+      formatter: function(cell, formatterParams, onRendered) {
+          var wind = pad(cell.getValue(),3);
+          return wind + "&deg; / " + cell.getRow().getData().wind.speed_kts + " kts";
+      }
+    },
     {
       title: "Visibilty",
       field: "visibility.meters",
@@ -72,34 +84,35 @@ table = new Tabulator("#weather", {
         }
       }
     },
-    { title: "Ceiling", field: "ceiling.feet_agl", headerSort: false }
+    {
+      title: "Ceiling",
+      field: "ceiling.feet_agl",
+      headerSort: false
+    }
 
   ]
 });
 
 //define some sample data
-ajaxCall();
-setInterval(ajaxCall, 300000); //300000 MS == 5 minutes
+ajaxCallUpdate();
+setInterval(ajaxCallUpdate, 300000); //300000 MS == 5 minutes
 
-function ajaxCall() {
+function ajaxCallUpdate() {
   var tabledata = $.ajax({
     type: "GET",
-    url:
-      "https://api.checkwx.com/metar/egll,egkk,eglc,egss,eggw,egcc,eggp,egnm,egbb,egnx,egff,eggd,eghh,eghh,eghi,egmc,eghq,egkb,egte/decoded/",
+    url: "https://api.checkwx.com/metar/egll,egkk,eglc,egss,eggw,egcc,eggp,egnm,egbb,egnx,egff,eggd,eghh,eghh,eghi,egmc,eghq,egkb,egte/decoded/",
     headers: {
       "X-API-Key": "f5616e0b457548cf07ac51b19a"
     },
     dataType: "json",
     success: function(result) {
-      table.setData(result.data);
+      table.replaceData(result.data);
     },
     error: function(error) {
       console.log(error);
     }
   });
 }
-
-
 
 // callsign
 function loadCallsign() {
@@ -146,3 +159,8 @@ function loadLocation() {
   xhttp.open("GET", "https://v4p4sz5ijk.execute-api.us-east-1.amazonaws.com/anbdata/airports/locations/indicators-list?api_key=e1056fc0-06e8-11e9-90b4-7b91eb5aa78d&state=&format=json&airports=" + airport, true);
   xhttp.send();
 };
+
+function pad (str, max) {
+  str = str.toString();
+  return str.length < max ? pad("0" + str, max) : str;
+}
