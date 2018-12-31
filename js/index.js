@@ -45,19 +45,156 @@ $(document).ready(function() {
 // METAR tables
 var oldqnh = new Object;
 
+var airportdata = {
+  "EGLL": {
+    "rwyhdg": "270",
+    "rwy1": "27",
+    "rwy2": "9",
+    "ta": "6000"
+  },
+  "EGKK": {
+    "rwyhdg": "260",
+    "rwy1": "26",
+    "rwy2": "8",
+    "ta": "6000"
+  },
+  "EGLC": {
+    "rwyhdg": "270",
+    "rwy1": "27",
+    "rwy2": "9",
+    "ta": "6000"
+  },
+  "EGSS": {
+    "rwyhdg": "220",
+    "rwy1": "22",
+    "rwy2": "4",
+    "ta": "6000"
+  },
+  "EGGW": {
+    "rwyhdg": "260",
+    "rwy1": "26",
+    "rwy2": "8",
+    "ta": "6000"
+  },
+  "EGCC": {
+    "rwyhdg": "230",
+    "rwy1": "23",
+    "rwy2": "5",
+    "ta": "5000"
+  },
+  "EGGP": {
+    "rwyhdg": "270",
+    "rwy1": "27",
+    "rwy2": "9",
+    "ta": "5000"
+  },
+  "EGNM": {
+    "rwyhdg": "320",
+    "rwy1": "32",
+    "rwy2": "14",
+    "ta": "5000"
+  },
+  "EGBB": {
+    "rwyhdg": "330",
+    "rwy1": "33",
+    "rwy2": "15",
+    "ta": "6000"
+  },
+  "EGNX": {
+    "rwyhdg": "270",
+    "rwy1": "27",
+    "rwy2": "9",
+    "ta": "6000"
+  },
+  "EGFF": {
+    "rwyhdg": "300",
+    "rwy1": "30",
+    "rwy2": "12",
+    "ta": "6000"
+  },
+  "EGGD": {
+    "rwyhdg": "270",
+    "rwy1": "27",
+    "rwy2": "9",
+    "ta": "6000"
+  },
+  "EGHH": {
+    "rwyhdg": "260",
+    "rwy1": "26",
+    "rwy2": "8",
+    "ta": "6000"
+  },
+  "EGHI": {
+    "rwyhdg": "200",
+    "rwy1": "20",
+    "rwy2": "2",
+    "ta": "6000"
+  },
+  "EGMC": {
+    "rwyhdg": "230",
+    "rwy1": "23",
+    "rwy2": "5",
+    "ta": "6000"
+  },
+  "EGHQ": {
+    "rwyhdg": "300",
+    "rwy1": "30",
+    "rwy2": "12",
+    "ta": "3000"
+  },
+  "EGKB": {
+    "rwyhdg": "210",
+    "rwy1": "21",
+    "rwy2": "3",
+    "ta": "6000"
+  },
+  "EGTE": {
+    "rwyhdg": "260",
+    "rwy1": "26",
+    "rwy2": "8",
+    "ta": "3000"
+  },
+};
+
 table = new Tabulator("#weather", {
   index: "icao",
   resizableColumns: false,
+  responsiveLayout:"hide",
   layout: "fitColumns",
   columns: [{
       title: "ICAO",
       field: "icao",
-      headerSort: false
+      headerSort: false,
+      minWidth:50,
+      responsive:0
+    },
+    {
+      title: "Runway",
+      field: "wind.degrees",
+      headerSort: false,
+      minWidth:50,
+      responsive:0,
+      formatter: function(cell, formatterParams, onRendered) {
+        var icao = cell.getRow().getData().icao;
+        var winddir = cell.getValue();
+        var windspd = cell.getRow().getData().wind.speed_kts;
+        var rwydir = airportdata[icao].rwyhdg;
+
+        var tailwindcomp = (windspd * Math.cos((winddir-rwydir) * Math.PI / 180));
+
+        if (tailwindcomp >= -5) {
+          return pad(airportdata[icao].rwy1, 2)
+        } else {
+          return pad(airportdata[icao].rwy2, 2)
+        }
+      }
     },
     {
       title: "QNH",
       field: "barometer.mb",
       headerSort: false,
+      minWidth:50,
+      responsive:0,
       formatter: function(cell, formatterParams, onRendered) {
         var icao = cell.getRow().getData().icao;
 
@@ -85,6 +222,8 @@ table = new Tabulator("#weather", {
       title: "Wind",
       field: "wind.degrees",
       headerSort: false,
+      minWidth:100,
+      responsive:0,
       formatter: function(cell, formatterParams, onRendered) {
         var wind = pad(cell.getValue(), 3);
         return wind + "&deg; / " + cell.getRow().getData().wind.speed_kts + " kts";
@@ -94,6 +233,7 @@ table = new Tabulator("#weather", {
       title: "Visibilty",
       field: "visibility.meters",
       headerSort: false,
+      responsive:2,
       formatter: function(cell, formatterParams, onRendered) {
         if (cell.getValue().includes("+")) {
           return cell.getValue();
@@ -105,7 +245,8 @@ table = new Tabulator("#weather", {
     {
       title: "Ceiling",
       field: "ceiling.feet_agl",
-      headerSort: false
+      headerSort: false,
+      responsive:2,
     }
 
   ]
