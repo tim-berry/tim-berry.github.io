@@ -42,15 +42,14 @@ $(document).ready(function() {
   $('.tabs').tabs();
 });
 
-// METAR
-//create Tabulator on DOM element with id "example-table"
+// METAR tables
+var oldqnh = new Object;
+
 table = new Tabulator("#weather", {
   index: "icao",
   resizableColumns: false,
   layout: "fitColumns",
-  columns: [
-    //Define Table Columns
-    {
+  columns: [{
       title: "ICAO",
       field: "icao",
       headerSort: false
@@ -60,7 +59,26 @@ table = new Tabulator("#weather", {
       field: "barometer.mb",
       headerSort: false,
       formatter: function(cell, formatterParams, onRendered) {
+        var icao = cell.getRow().getData().icao;
+
+        if (typeof oldqnh[icao] === "undefined") {
+          oldqnh[icao] = Math.round(cell.getValue());
+        };
+
+        if (oldqnh[icao] == Math.round(cell.getValue())) {
           return Math.round(cell.getValue());
+        } else {
+          $(function() {
+            $.amaran({
+              'message': cell.getRow().getData().icao + ' QNH ' + Math.round(cell.getValue()),
+              'position': 'bottom right',
+              'sticky': true
+            });
+          });
+          oldqnh[icao] = Math.round(cell.getValue());
+          return Math.round(cell.getValue());
+        }
+
       }
     },
     {
@@ -68,8 +86,8 @@ table = new Tabulator("#weather", {
       field: "wind.degrees",
       headerSort: false,
       formatter: function(cell, formatterParams, onRendered) {
-          var wind = pad(cell.getValue(),3);
-          return wind + "&deg; / " + cell.getRow().getData().wind.speed_kts + " kts";
+        var wind = pad(cell.getValue(), 3);
+        return wind + "&deg; / " + cell.getRow().getData().wind.speed_kts + " kts";
       }
     },
     {
@@ -93,7 +111,6 @@ table = new Tabulator("#weather", {
   ]
 });
 
-//define some sample data
 ajaxCallUpdate();
 setInterval(ajaxCallUpdate, 300000); //300000 MS == 5 minutes
 
@@ -106,7 +123,7 @@ function ajaxCallUpdate() {
     },
     dataType: "json",
     success: function(result) {
-      table.replaceData(result.data);
+      table.setData(result.data);
     },
     error: function(error) {
       console.log(error);
@@ -114,7 +131,7 @@ function ajaxCallUpdate() {
   });
 }
 
-// callsign
+// callsign search
 function loadCallsign() {
   var airline = document.getElementById("icao").value;
   var xhttp = new XMLHttpRequest();
@@ -137,7 +154,7 @@ function loadCallsign() {
   xhttp.send();
 };
 
-// location
+// icao location search
 function loadLocation() {
   var airport = document.getElementById("icao").value;
   var xhttp = new XMLHttpRequest();
@@ -160,7 +177,8 @@ function loadLocation() {
   xhttp.send();
 };
 
-function pad (str, max) {
+// pad numbers (used for surface wind)
+function pad(str, max) {
   str = str.toString();
   return str.length < max ? pad("0" + str, max) : str;
 }
