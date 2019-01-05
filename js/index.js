@@ -225,8 +225,12 @@ table = new Tabulator("#weather", {
       minWidth:100,
       responsive:0,
       formatter: function(cell, formatterParams, onRendered) {
-        var wind = pad(cell.getValue(), 3);
-        return wind + "&deg; / " + cell.getRow().getData().wind.speed_kts + " kts";
+        if  (typeof cell.getValue() === "undefined"){
+          return "000&deg; / 00 kts";
+        } else {
+          var wind = pad(cell.getValue(), 3);
+          return wind + "&deg; / " + cell.getRow().getData().wind.speed_kts + " kts";
+        }
       }
     },
     {
