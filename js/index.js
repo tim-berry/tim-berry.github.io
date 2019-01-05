@@ -225,7 +225,7 @@ table = new Tabulator("#weather", {
       minWidth:100,
       responsive:0,
       formatter: function(cell, formatterParams, onRendered) {
-        if  (typeof cell.getValue() === 0){
+        if  (cell.getValue() == null){
           return "000&deg; / 00 kts";
         } else {
           var wind = pad(cell.getValue(), 3);
