@@ -198,7 +198,7 @@ table = new Tabulator("#weather", {
       formatter: function(cell, formatterParams, onRendered) {
         var icao = cell.getRow().getData().icao;
 
-        if (typeof oldqnh[icao] === "null") {
+        if (typeof oldqnh[icao] === "undefined") {
           oldqnh[icao] = Math.round(cell.getValue());
         };
 
@@ -225,7 +225,7 @@ table = new Tabulator("#weather", {
       minWidth:100,
       responsive:0,
       formatter: function(cell, formatterParams, onRendered) {
-        if  (typeof cell.getValue() === "undefined"){
+        if  (typeof cell.getValue() === "null"){
           return "000&deg; / 00 kts";
         } else {
           var wind = pad(cell.getValue(), 3);
