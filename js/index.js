@@ -198,7 +198,7 @@ table = new Tabulator("#weather", {
       formatter: function(cell, formatterParams, onRendered) {
         var icao = cell.getRow().getData().icao;
 
-        if (typeof oldqnh[icao] === "undefined") {
+        if (typeof oldqnh[icao] === "null") {
           oldqnh[icao] = Math.round(cell.getValue());
         };
 
