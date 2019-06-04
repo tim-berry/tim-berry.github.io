@@ -2,1449 +2,1401 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>EGTT ATC Assistant</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.amaran/0.5.4/amaran.min.css">
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <title>EGTT ATC Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.amaran/0.5.4/amaran.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-  <div class="navbar-fixed">
-    <nav class="indigo">
-      <div class="nav-wrapper">
-        <a href="#!" class="brand-logo left">EGTT ATC Assistant</a>
-        <ul class="right">
-          <li><a href="#!">
-              <div id="clock"></div>
-            </a></li>
-        </ul>
-        <div class="col s12">
-          <ul class="tabs tabs-fixed-width">
-            <li class="tab col s3"><a class="active waves-effect waves-light" href="#metar">MET</a></li>
-            <li class="tab col s3"><a href="#stars" class="waves-effect waves-light">STARS</a></li>
-            <li class="tab col s3"><a href="#search" class="waves-effect waves-light">SEARCH</a></li>
-            <li class="tab col s3"><a href="#ic" class="waves-effect waves-light">IC</a></li>
-          </ul>
+    <div class="navbar-fixed">
+        <nav class="indigo">
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo left">EGTT ATC Assistant</a>
+                <ul class="right">
+                    <li><a href="#!">
+                            <div id="clock"></div>
+                        </a></li>
+                </ul>
+                <div class="col s12">
+                    <ul class="tabs tabs-fixed-width">
+                        <li class="tab col s3"><a class="active waves-effect waves-light" href="#metar">MET</a></li>
+                        <li class="tab col s3"><a href="#stars" class="waves-effect waves-light">STARS</a></li>
+                        <li class="tab col s3"><a href="#search" class="waves-effect waves-light">SEARCH</a></li>
+                        <li class="tab col s3"><a href="#ic" class="waves-effect waves-light">IC</a></li>
+                    </ul>
+                </div>
+
+        </nav>
+    </div>
+    <div class="container" id="tabs">
+        <div id="metar" class="col s12">
+            <div id="weather"></div>
+
         </div>
+        <div id="stars" class="col s12">
+            <div id="star_table">
+                <input class="search" placeholder="Search" />
+                <table class="table table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th title="Airport">Airport</th>
+                            <th title="Ident">Ident</th>
+                            <th title="Start">Start</th>
+                            <th title="End">End</th>
+                            <th title="Points">Points</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list">
+                        <tr>
+                            <td class="airport">EGLL</td>
+                            <td class="ident">BIG4B</td>
+                            <td class="start">ALESO</td>
+                            <td class="end">BIG</td>
+                            <td class="points">ETVAX(FL180)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLL</td>
+                            <td class="ident">BNN1B</td>
+                            <td class="start">NUGRA</td>
+                            <td class="end">BNN</td>
+                            <td class="points">TOBID(FL200) <br /> SOPIT(FL150)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLL</td>
+                            <td class="ident">BNN1C</td>
+                            <td class="start">DTY</td>
+                            <td class="end">BNN</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLL</td>
+                            <td class="ident">BNN4A</td>
+                            <td class="start">HON</td>
+                            <td class="end">BNN</td>
+                            <td class="points">SOPIT(FL150)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLL</td>
+                            <td class="ident">LOGAN1H</td>
+                            <td class="start">LOGAN</td>
+                            <td class="end">LAM</td>
+                            <td class="points">LOGAN(FL240/FL250)<br /> SABER(FL160)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLL</td>
+                            <td class="ident">NIGIT1H</td>
+                            <td class="start">NIGIT</td>
+                            <td class="end">OCK</td>
+                            <td class="points">NIGIT(FL140)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLL</td>
+                            <td class="ident">HAZEL1H</td>
+                            <td class="start">HAZEL</td>
+                            <td class="end">OCK</td>
+                            <td class="points">HAZEL (FL130)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLL</td>
+                            <td class="ident">OTMET1H</td>
+                            <td class="start">OTMET</td>
+                            <td class="end">OCK</td>
+                            <td class="points">OTMET(FL270)<br /> NEDUL(FL210)<br /> HAZEL(FL130)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLL</td>
+                            <td class="ident">ROXOG1H</td>
+                            <td class="start">ROXOG</td>
+                            <td class="end">OCK</td>
+                            <td class="points">HAZEL (FL130)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGBB</td>
+                            <td class="ident">CHASE1C</td>
+                            <td class="start">WAL</td>
+                            <td class="end">CHASE</td>
+                            <td class="points">CHASE(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGBB</td>
+                            <td class="ident">CHASE2D</td>
+                            <td class="start">AMPIT</td>
+                            <td class="end">CHASE</td>
+                            <td class="points">NOKIN(FL200)<br /> CHASE(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGBB</td>
+                            <td class="ident">CHASE3F</td>
+                            <td class="start">BEGAM</td>
+                            <td class="end">CHASE</td>
+                            <td class="points">MCT(FL200)<br /> CHASE(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGBB</td>
+                            <td class="ident">CHASE3G</td>
+                            <td class="start">POL</td>
+                            <td class="end">CHASE</td>
+                            <td class="points">CHASE(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGBB</td>
+                            <td class="ident">CHASE3H</td>
+                            <td class="start">DESIG</td>
+                            <td class="end">CHASE</td>
+                            <td class="points">VEGUS(FL290)<br /> MCT(FL200)<br /> CHASE(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGBB</td>
+                            <td class="ident">CHASE4B</td>
+                            <td class="start">CROFT</td>
+                            <td class="end">CHASE</td>
+                            <td class="points">MCT(FL200)<br /> CHASE(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGBB</td>
+                            <td class="ident">GROVE1B</td>
+                            <td class="start">WCO</td>
+                            <td class="end">GROVE</td>
+                            <td class="points">D12HON(FL80)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGBB</td>
+                            <td class="ident">GROVE1C</td>
+                            <td class="start">BUZAD</td>
+                            <td class="end">GROVE</td>
+                            <td class="points">HEMEL(FL220)<br /> D12HON(FL80)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGCC</td>
+                            <td class="ident">DAYNE1B</td>
+                            <td class="start">LESTA</td>
+                            <td class="end">DAYNE</td>
+                            <td class="points">D25TNT(FL200)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGCC</td>
+                            <td class="ident">DAYNE2A</td>
+                            <td class="start">TNT</td>
+                            <td class="end">DAYNE</td>
+                            <td class="points">D25TNT/ELVOS(FL200)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGCC</td>
+                            <td class="ident">MIRSI1A</td>
+                            <td class="start">MONTY</td>
+                            <td class="end">MIRSI</td>
+                            <td class="points">OKTEM(FL200)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGCC</td>
+                            <td class="ident">MIRSI2B</td>
+                            <td class="start">MALUD</td>
+                            <td class="end">MIRSI</td>
+                            <td class="points">LIFFY(FL270)<br /> MALUD(FL170)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGCC</td>
+                            <td class="ident">MIRSI2C</td>
+                            <td class="start">PENIL</td>
+                            <td class="end">MIRSI</td>
+                            <td class="points">PENIL(FL170)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGCC</td>
+                            <td class="ident">MIRSI2D</td>
+                            <td class="start">GIGTO</td>
+                            <td class="end">MIRSI</td>
+                            <td class="points">MAKUX(FL270)<br /> IBRAR(FL170)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGCC</td>
+                            <td class="ident">ROSUN1F</td>
+                            <td class="start">OTBED</td>
+                            <td class="end">ROSUN</td>
+                            <td class="points">OTBED(FL290)<br /> GOLES(FL170)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGCC</td>
+                            <td class="ident">ROSUN1G</td>
+                            <td class="start">LIBSO</td>
+                            <td class="end">ROSUN</td>
+                            <td class="points">GOLES(FL170)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGCC</td>
+                            <td class="ident">ROSUN2A</td>
+                            <td class="start">LAKEY</td>
+                            <td class="end">ROSUN</td>
+                            <td class="points">LAKEY(FL200)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGCC</td>
+                            <td class="ident">ROSUN2B</td>
+                            <td class="start">SETEL</td>
+                            <td class="end">ROSUN</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGCC</td>
+                            <td class="ident">ROSUN2E</td>
+                            <td class="start">GOLES</td>
+                            <td class="end">ROSUN</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGCC</td>
+                            <td class="ident">ROSUN4D</td>
+                            <td class="start">TILNI</td>
+                            <td class="end">ROSUN</td>
+                            <td class="points">TILNI(FL230)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGFF</td>
+                            <td class="ident">CDF1A</td>
+                            <td class="start">RETSI</td>
+                            <td class="end">CDF</td>
+                            <td class="points">AMRAL(FL160)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGFF</td>
+                            <td class="ident">CDF1B</td>
+                            <td class="start">STU</td>
+                            <td class="end">CDF</td>
+                            <td class="points">D10AMMAN(FL170)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGFF</td>
+                            <td class="ident">CDF1C</td>
+                            <td class="start">CPT</td>
+                            <td class="end">CDF</td>
+                            <td class="points">CPT(FL260)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGFF</td>
+                            <td class="ident">CDF1E</td>
+                            <td class="start">TALGA</td>
+                            <td class="end">CDF</td>
+                            <td class="points">D10TALGA(FL160)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGFF</td>
+                            <td class="ident">CDF3D</td>
+                            <td class="start">BHD</td>
+                            <td class="end">CDF</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGD</td>
+                            <td class="ident">ADVED1A(RW09)</td>
+                            <td class="start">EXMOR</td>
+                            <td class="end">ADVED</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGD</td>
+                            <td class="ident">BAXUN1A(RW27)</td>
+                            <td class="start">EXMOR</td>
+                            <td class="end">BAXUN</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGD</td>
+                            <td class="ident">BRI1A</td>
+                            <td class="start">RETSI</td>
+                            <td class="end">BRI</td>
+                            <td class="points">AMRAL(FL160)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGD</td>
+                            <td class="ident">BRI1B</td>
+                            <td class="start">STU</td>
+                            <td class="end">BRI</td>
+                            <td class="points">D10AMMAN(FL170)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGD</td>
+                            <td class="ident">BRI1C</td>
+                            <td class="start">CPT</td>
+                            <td class="end">BRI</td>
+                            <td class="points">CPT(FL220)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGD</td>
+                            <td class="ident">BRI1E</td>
+                            <td class="start">TALGA</td>
+                            <td class="end">BRI</td>
+                            <td class="points">D10TALGA(FL160)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGD</td>
+                            <td class="ident">BRI2D</td>
+                            <td class="start">BHD</td>
+                            <td class="end">BRI</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGP</td>
+                            <td class="ident">KEGUN1D</td>
+                            <td class="start">MONTY</td>
+                            <td class="end">KEGUN</td>
+                            <td class="points">D10OKTEM(FL200)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGP</td>
+                            <td class="ident">KEGUN2A</td>
+                            <td class="start">LESTA</td>
+                            <td class="end">KEGUN</td>
+                            <td class="points">LESTA(FL200)<br /> NANTI(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGP</td>
+                            <td class="ident">KEGUN2B</td>
+                            <td class="start">TNT</td>
+                            <td class="end">KEGUN</td>
+                            <td class="points">D25TNT/ELVOS(FL200)<br /> NANTI(FL200)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGP</td>
+                            <td class="ident">KEGUN2C</td>
+                            <td class="start">PEDIG</td>
+                            <td class="end">KEGUN</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGP</td>
+                            <td class="ident">TIPOD1C</td>
+                            <td class="start">CROFT</td>
+                            <td class="end">TIPOD</td>
+                            <td class="points">LAKEY(FL200)/BEGAM(FL170)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGP</td>
+                            <td class="ident">TIPOD1D</td>
+                            <td class="start">POL</td>
+                            <td class="end">TIPOD</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGP</td>
+                            <td class="ident">TIPOD1E</td>
+                            <td class="start">DESIG</td>
+                            <td class="end">TIPOD</td>
+                            <td class="points">VEGUS(FL290)<br /> UPTON(FL170)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGP</td>
+                            <td class="ident">TIPOD1J</td>
+                            <td class="start">MONTY</td>
+                            <td class="end">TIPOD</td>
+                            <td class="points">D10OKTEM(FL200)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGP</td>
+                            <td class="ident">TIPOD2B</td>
+                            <td class="start">PENIL</td>
+                            <td class="end">TIPOD</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGP</td>
+                            <td class="ident">TIPOD2F</td>
+                            <td class="start">LESTA</td>
+                            <td class="end">TIPOD</td>
+                            <td class="points">LESTA(FL200)<br /> NANTI(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGP</td>
+                            <td class="ident">TIPOD2G</td>
+                            <td class="start">TNT</td>
+                            <td class="end">TIPOD</td>
+                            <td class="points">D25TNT/ELVOS(FL200)<br /> NANTI(FL200)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGP</td>
+                            <td class="ident">TIPOD2H</td>
+                            <td class="start">PEDIG</td>
+                            <td class="end">TIPOD</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGP</td>
+                            <td class="ident">TIPOD3A</td>
+                            <td class="start">MALUD</td>
+                            <td class="end">TIPOD</td>
+                            <td class="points">LIFFY(FL270)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">IDESI1A</td>
+                            <td class="start">IDESI</td>
+                            <td class="end">ABBOT</td>
+                            <td class="points">IDESI(FL180)<br /> LAPRA(FL120)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">LOGAN1A</td>
+                            <td class="start">LOGAN</td>
+                            <td class="end">ABBOT</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">DET1A</td>
+                            <td class="start">DET</td>
+                            <td class="end">ABBOT</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">BARMI1A</td>
+                            <td class="start">BARMI</td>
+                            <td class="end">ABBOT</td>
+                            <td class="points">BARMI(FL260)<br /> MEGEL(FL220)<br /> LAPRA(FL120)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">LOREL1B</td>
+                            <td class="start">KATHY</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">LOREL1K</td>
+                            <td class="start">DTY</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">LOREL2D</td>
+                            <td class="start">GIBSO</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">AVANT(FL190)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">LOREL2H</td>
+                            <td class="start">HON</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">CLIPY(FL150)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">LOREL2L</td>
+                            <td class="start">KENET</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">D10KENET(FL140)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">LOREL2S</td>
+                            <td class="start">BEDEK</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">BEDEK(FL180)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">LOREL3G</td>
+                            <td class="start">MCT</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">ROGBI(FL200)<br /> CLIPY(FL150)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">LOREL4C</td>
+                            <td class="start">AVANT</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">AVANT(FL190)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">LOREL4Q</td>
+                            <td class="start">BANVA</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">MAY(FL200)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">LOREL5A</td>
+                            <td class="start">WCO</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">LOREL5F</td>
+                            <td class="start">LISTO</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">ROGBI(FL200)<br /> CLIPY(FL150)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGGW</td>
+                            <td class="ident">TELTU1L</td>
+                            <td class="start">TELTU</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">TELTU(FL190)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGHH</td>
+                            <td class="ident">BUGUP1S</td>
+                            <td class="start">BAGUP</td>
+                            <td class="end">SAM</td>
+                            <td class="points">BAGUP(FL150)<br />RISIN(FL110)<br />SAM(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGHH</td>
+                            <td class="ident">CPT1S</td>
+                            <td class="start">CPT</td>
+                            <td class="end">SAM</td>
+                            <td class="points">CPT(FL120)<br />SAM(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGHH</td>
+                            <td class="ident">UMBUR2S</td>
+                            <td class="start">UMBUR</td>
+                            <td class="end">SAM</td>
+                            <td class="points">OCK(FL160)<br />SAM(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGHH</td>
+                            <td class="ident">COWLY1S</td>
+                            <td class="start">COWLY</td>
+                            <td class="end">SAM</td>
+                            <td class="points">COWLY(FL80)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGHH</td>
+                            <td class="ident">ELDAX1S</td>
+                            <td class="start">ELDAX</td>
+                            <td class="end">SAM</td>
+                            <td class="points">D5ELDAX<br />GIVUN(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGHH</td>
+                            <td class="ident">THRED1S</td>
+                            <td class="start">THRED</td>
+                            <td class="end">NEDUL</td>
+                            <td class="points">THRED(FL70)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGHI</td>
+                            <td class="ident">BUGUP1S</td>
+                            <td class="start">BAGUP</td>
+                            <td class="end">SAM</td>
+                            <td class="points">BAGUP(FL150)<br />RISIN(FL110)<br />SAM(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGHI</td>
+                            <td class="ident">CPT1S</td>
+                            <td class="start">CPT</td>
+                            <td class="end">SAM</td>
+                            <td class="points">CPT(FL120)<br />SAM(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGHI</td>
+                            <td class="ident">UMBUR2S</td>
+                            <td class="start">UMBUR</td>
+                            <td class="end">SAM</td>
+                            <td class="points">OCK(FL160)<br />SAM(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGHI</td>
+                            <td class="ident">COWLY1S</td>
+                            <td class="start">COWLY</td>
+                            <td class="end">SAM</td>
+                            <td class="points">COWLY(FL80)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGHI</td>
+                            <td class="ident">ELDAX1S</td>
+                            <td class="start">ELDAX</td>
+                            <td class="end">SAM</td>
+                            <td class="points">D5ELDAX<br />GIVUN(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGHI</td>
+                            <td class="ident">THRED1S</td>
+                            <td class="start">THRED</td>
+                            <td class="end">NEDUL</td>
+                            <td class="points">THRED(FL70)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKB</td>
+                            <td class="ident">GODLU1A</td>
+                            <td class="start">BEDEK</td>
+                            <td class="end">GODLU</td>
+                            <td class="points">BEDEK(FL180)<br /> BIG(FL160)<br /> GODLU(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKB</td>
+                            <td class="ident">GODLU1C</td>
+                            <td class="start">KONAN</td>
+                            <td class="end">GODLU</td>
+                            <td class="points">GODLU(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKB</td>
+                            <td class="ident">GODLU1D</td>
+                            <td class="start">SOVAT</td>
+                            <td class="end">GODLU</td>
+                            <td class="points">GODLU(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKB</td>
+                            <td class="ident">GODLU1F</td>
+                            <td class="start">NEVIL</td>
+                            <td class="end">GODLU</td>
+                            <td class="points">NEVIL(FL220)<br /> NETVU(FL140)<br /> GODLU(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKB</td>
+                            <td class="ident">GODLU1G</td>
+                            <td class="start">DOMUT</td>
+                            <td class="end">GODLU</td>
+                            <td class="points">BIDVA (FL130)<br /> GODLU(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKB</td>
+                            <td class="ident">GODLU1H</td>
+                            <td class="start">SAM</td>
+                            <td class="end">GODLU</td>
+                            <td class="points">BIDVA (FL130)<br /> GODLU(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKB</td>
+                            <td class="ident">GODLU1J</td>
+                            <td class="start">GIBSO</td>
+                            <td class="end">GODLU</td>
+                            <td class="points">AVANT(FL190)<br /> BIG(FL160)<br /> GODLU(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKB</td>
+                            <td class="ident">JACKO1A</td>
+                            <td class="start">KENET</td>
+                            <td class="end">JACKO</td>
+                            <td class="points">KENET(FL140)<br /> JACKO(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKB</td>
+                            <td class="ident">SUMUM1C</td>
+                            <td class="start">SUMUM</td>
+                            <td class="end">JACKO</td>
+                            <td class="points">INLOD/MOMIC(FL220)<br /> JACKO(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKB</td>
+                            <td class="ident">XAMAN1C</td>
+                            <td class="start">XAMAN</td>
+                            <td class="end">JACKO</td>
+                            <td class="points">JACKO(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKB</td>
+                            <td class="ident">JACKO1H</td>
+                            <td class="start">HON</td>
+                            <td class="end">JACKO</td>
+                            <td class="points">ROGBI(FL200)<br /> INLIM(FL120)<br /> JACKO(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKB</td>
+                            <td class="ident">JACKO1M</td>
+                            <td class="start">MCT</td>
+                            <td class="end">JACKO</td>
+                            <td class="points">ODVOD(FL220)<br /> INLIM(FL120)<br /> JACKO(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKB</td>
+                            <td class="ident">JACKO2L</td>
+                            <td class="start">LISTO</td>
+                            <td class="end">JACKO</td>
+                            <td class="points">ODVOD(FL220)<br /> INLIM(FL120)<br /> JACKO(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKK</td>
+                            <td class="ident">OTMET1G</td>
+                            <td class="start">OTMET</td>
+                            <td class="end">WILLO</td>
+                            <td class="points">OTMET(FL270)<br /> NEDUL(FL210)<br /> TELTU(FL130)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKK</td>
+                            <td class="ident">TEBRA1G</td>
+                            <td class="start">TEBRA</td>
+                            <td class="end">TIMBA</td>
+                            <td class="points">ODROB/BLIXY/SUNUP(FL220)<br /> ABTUM (FL140)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKK</td>
+                            <td class="ident">TIMBA2G</td>
+                            <td class="start">NEVIL</td>
+                            <td class="end">TIMBA</td>
+                            <td class="points">NEVIL(FL220)<br /> NETVU(FL140)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKK</td>
+                            <td class="ident">KONAN1G</td>
+                            <td class="start">KONAN</td>
+                            <td class="end">TIMBA</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKK</td>
+                            <td class="ident">TIMBA4B</td>
+                            <td class="start">KUNAV</td>
+                            <td class="end">TIMBA</td>
+                            <td class="points">AMDUT(FL160)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKK</td>
+                            <td class="ident">VASUX1G</td>
+                            <td class="start">VASUX</td>
+                            <td class="end">WILLO</td>
+                            <td class="points">TELTU(FL130)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKK</td>
+                            <td class="ident">WILLO1F</td>
+                            <td class="start">KENET</td>
+                            <td class="end">WILLO</td>
+                            <td class="points">KENET(FL140)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKK</td>
+                            <td class="ident">WILLO2H</td>
+                            <td class="start">BEDEK</td>
+                            <td class="end">WILLO</td>
+                            <td class="points">BEDEK(FL140)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKK</td>
+                            <td class="ident">GWC1G</td>
+                            <td class="start">GWC</td>
+                            <td class="end">WILLO</td>
+                            <td class="points">GWC(FL130)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKK</td>
+                            <td class="ident">WILLO3B</td>
+                            <td class="start">KIDLI</td>
+                            <td class="end">WILLO</td>
+                            <td class="points">DISIT(FL200)<br /> KIDLI(FL150)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKK</td>
+                            <td class="ident">ABSAV1G</td>
+                            <td class="start">ABSAV</td>
+                            <td class="end">WILLO</td>
+                            <td class="points">GWC(FL130)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGKK</td>
+                            <td class="ident">WILLO4C</td>
+                            <td class="start">DOMUT</td>
+                            <td class="end">WILLO</td>
+                            <td class="points">GWC(FL130)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLC</td>
+                            <td class="ident">GODLU1A</td>
+                            <td class="start">BEDEK</td>
+                            <td class="end">GODLU</td>
+                            <td class="points">BEDEK(FL180)<br /> BIG(FL160)<br /> GODLU(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLC</td>
+                            <td class="ident">GODLU1C</td>
+                            <td class="start">KONAN</td>
+                            <td class="end">GODLU</td>
+                            <td class="points">GODLU(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLC</td>
+                            <td class="ident">GODLU1D</td>
+                            <td class="start">SOVAT</td>
+                            <td class="end">GODLU</td>
+                            <td class="points">GODLU(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLC</td>
+                            <td class="ident">GODLU1F</td>
+                            <td class="start">NEVIL</td>
+                            <td class="end">GODLU</td>
+                            <td class="points">NEVIL(FL220)<br /> NETVU(FL140)<br /> GODLU(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLC</td>
+                            <td class="ident">GODLU1G</td>
+                            <td class="start">DOMUT</td>
+                            <td class="end">GODLU</td>
+                            <td class="points">BIDVA (FL130)<br /> GODLU(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLC</td>
+                            <td class="ident">GODLU1H</td>
+                            <td class="start">SAM</td>
+                            <td class="end">GODLU</td>
+                            <td class="points">BIDVA (FL130)<br /> GODLU(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLC</td>
+                            <td class="ident">GODLU1J</td>
+                            <td class="start">GIBSO</td>
+                            <td class="end">GODLU</td>
+                            <td class="points">AVANT(FL190)<br /> BIG(FL160)<br /> GODLU(FL100)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLC</td>
+                            <td class="ident">JACKO1A</td>
+                            <td class="start">KENET</td>
+                            <td class="end">JACKO</td>
+                            <td class="points">KENET(FL140)<br /> JACKO(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLC</td>
+                            <td class="ident">SUMUM1C</td>
+                            <td class="start">SUMUM</td>
+                            <td class="end">JACKO</td>
+                            <td class="points">INLOD/MOMIC(FL220)<br /> JACKO(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLC</td>
+                            <td class="ident">XAMAN1C</td>
+                            <td class="start">XAMAN</td>
+                            <td class="end">JACKO</td>
+                            <td class="points">JACKO(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLC</td>
+                            <td class="ident">JACKO1H</td>
+                            <td class="start">HON</td>
+                            <td class="end">JACKO</td>
+                            <td class="points">ROGBI(FL200)<br /> INLIM(FL120)<br /> JACKO(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLC</td>
+                            <td class="ident">JACKO1M</td>
+                            <td class="start">MCT</td>
+                            <td class="end">JACKO</td>
+                            <td class="points">ODVOD(FL220)<br /> INLIM(FL120)<br /> JACKO(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGLC</td>
+                            <td class="ident">JACKO2L</td>
+                            <td class="start">LISTO</td>
+                            <td class="end">JACKO</td>
+                            <td class="points">ODVOD(FL220)<br /> INLIM(FL120)<br /> JACKO(FL90)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGMC</td>
+                            <td class="ident">SUMUM1S</td>
+                            <td class="start">SUMUM</td>
+                            <td class="end">GEGMU</td>
+                            <td class="points">INLOD/MOMIC(FL220)<br /> GEGMU(6A)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGMC</td>
+                            <td class="ident">XAMAN1S</td>
+                            <td class="start">XAMAN</td>
+                            <td class="end">GEGMU</td>
+                            <td class="points">GEGMU(6A)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGMC</td>
+                            <td class="ident">GEGMU1F</td>
+                            <td class="start">SOVAT</td>
+                            <td class="end">GEGMU</td>
+                            <td class="points">SOVAT(FL120)<br /> OKVAP(FL90)<br /> ATSAP(FL70)<br /> GEGMU (6A)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGMC</td>
+                            <td class="ident">GEGMU1G</td>
+                            <td class="start">NEVIL</td>
+                            <td class="end">GEGMU</td>
+                            <td class="points">NEVIL(FL220)<br /> NETVU(FL140)<br /> OKVAP(FL90)<br /> ATSAP(FL70)<br />
+                                GEGMU (6A)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGMC</td>
+                            <td class="ident">GEGMU1J</td>
+                            <td class="start">SAM</td>
+                            <td class="end">GEGMU</td>
+                            <td class="points">BIDVA(FL130)<br /> OKVAP(FL90)<br /> ATSAP(FL70)<br /> GEGMU (6A)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGMC</td>
+                            <td class="ident">GEGMU1K</td>
+                            <td class="start">DOMUT</td>
+                            <td class="end">GEGMU</td>
+                            <td class="points">BIDVA(FL130)<br /> OKVAP(FL90)<br /> ATSAP(FL70)<br /> GEGMU (6A)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGMC</td>
+                            <td class="ident">SPEAR1A</td>
+                            <td class="start">KENET</td>
+                            <td class="end">SPEAR</td>
+                            <td class="points">D10KENET(FL140)<br /> SPEAR (5A)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGMC</td>
+                            <td class="ident">SPEAR1M</td>
+                            <td class="start">MCT</td>
+                            <td class="end">SPEAR</td>
+                            <td class="points">ROGBI(FL200)<br /> CLIPY(FL150)<br /> SPEAR(5A)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGMC</td>
+                            <td class="ident">SPEAR2H</td>
+                            <td class="start">HON</td>
+                            <td class="end">SPEAR</td>
+                            <td class="points">CLIPY(FL150)<br /> SPEAR(5A)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGMC</td>
+                            <td class="ident">SPEAR2L</td>
+                            <td class="start">LISTO</td>
+                            <td class="end">SPEAR</td>
+                            <td class="points">ROGBI(FL200)<br /> CLIPY(FL150)<br /> SPEAR(5A)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGNX</td>
+                            <td class="ident">AMPIT1E</td>
+                            <td class="start">AMPIT</td>
+                            <td class="end">ROKUP</td>
+                            <td class="points">NOKIN(FL200)<br /> DIPSO<br /> ROKUP(FL80)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGNX</td>
+                            <td class="ident">PIGOT1H</td>
+                            <td class="start">DTY</td>
+                            <td class="end">PIGOT</td>
+                            <td class="points">UPDUK<br /> ROKUP(FL80)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGNX</td>
+                            <td class="ident">PIGOT1J</td>
+                            <td class="start">WELIN</td>
+                            <td class="end">PIGOT</td>
+                            <td class="points">HEMEL(FL220)<br />UPDUK<br /> ROKUP(FL80)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGNX</td>
+                            <td class="ident">ROKUP1B</td>
+                            <td class="start">CROFT</td>
+                            <td class="end">ROKUP</td>
+                            <td class="points">MCT(FL200)<br /> DIPSO<br /> ROKUP(FL80)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGNX</td>
+                            <td class="ident">ROKUP1F</td>
+                            <td class="start">POL</td>
+                            <td class="end">ROKUP</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGNX</td>
+                            <td class="ident">ROKUP1G</td>
+                            <td class="start">DESIG</td>
+                            <td class="end">ROKUP</td>
+                            <td class="points">VEGUS(FL290)<br /> MCT(FL200)<br /> DIPSO<br /> ROKUP(FL80)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGNX</td>
+                            <td class="ident">ROKUP1K</td>
+                            <td class="start">BEGAM</td>
+                            <td class="end">ROKUP</td>
+                            <td class="points">MCT(FL200)<br /> DIPSO<br /> ROKUP(FL80)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGNX</td>
+                            <td class="ident">WAL1E</td>
+                            <td class="start">WAL</td>
+                            <td class="end">ROKUP</td>
+                            <td class="points">DIPSO<br /> ROKUP(FL80)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">IDESI1A</td>
+                            <td class="start">IDESI</td>
+                            <td class="end">ABBOT</td>
+                            <td class="points">IDESI(FL180)<br /> LAPRA(FL120)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">LOGAN1A</td>
+                            <td class="start">LOGAN</td>
+                            <td class="end">ABBOT</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">DET1A</td>
+                            <td class="start">DET</td>
+                            <td class="end">ABBOT</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">BARMI1A</td>
+                            <td class="start">BARMI</td>
+                            <td class="end">ABBOT</td>
+                            <td class="points">BARMI(FL260)<br /> MEGEL(FL220)<br /> LAPRA(FL120)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">LOREL1B</td>
+                            <td class="start">KATHY</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">LOREL1K</td>
+                            <td class="start">DTY</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">LOREL2D</td>
+                            <td class="start">GIBSO</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">AVANT(FL190)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">LOREL2H</td>
+                            <td class="start">HON</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">CLIPY(FL150)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">LOREL2L</td>
+                            <td class="start">KENET</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">D10KENET(FL140)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">LOREL2S</td>
+                            <td class="start">BEDEK</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">BEDEK(FL180)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">LOREL3G</td>
+                            <td class="start">MCT</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">ROGBI(FL200)<br /> CLIPY(FL150)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">LOREL4C</td>
+                            <td class="start">AVANT</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">AVANT(FL190)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">LOREL4Q</td>
+                            <td class="start">BANVA</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">MAY(FL200)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">LOREL5A</td>
+                            <td class="start">WCO</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">LOREL5F</td>
+                            <td class="start">LISTO</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">ROGBI(FL200)<br /> CLIPY(FL150)</td>
+                        </tr>
+                        <tr>
+                            <td class="airport">EGSS</td>
+                            <td class="ident">TELTU1L</td>
+                            <td class="start">TELTU</td>
+                            <td class="end">LOREL</td>
+                            <td class="points">TELTU(FL190)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-    </nav>
-  </div>
-  <div class="container" id="tabs">
-    <div id="metar" class="col s12">
-      <div id="weather"></div>
+        </div>
+        <div id="search" class="col s12">
+            <input id="icao" type="text" maxlength="4" size="4" placeholder="Search Callsign or Location" />
+            <br /><br />
+            <button class="btn" type="button" onclick="loadCallsign()">Callsign</button>
+            <button class="btn" type="button" onclick="loadLocation()">Location</button>
+            <div id="result">
+            </div>
+        </div>
+        <div id="ic" class="col s12">
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th title="Intention Code">Intention Code</th>
+                        <th title="Route">Route</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>K1</td>
+                    <td>Copenhagen FIR via VAXIT</td>
+                </tr>
+                <tr>
+                    <td>K2</td>
+                    <td>Copenhagen FIR via TINAC/PETIL</td>
+                </tr>
+                <tr>
+                    <td>K3</td>
+                    <td>Copenhagen FIR via INBOB (UM604)</td>
+                </tr>
+                <tr>
+                    <td>AM</td>
+                    <td>Amsterdam TMA</td>
+                </tr>
+                <tr>
+                    <td>F</td>
+                    <td>Amsterdam FIR via LAMSO (UL603)</td>
+                </tr>
+                <tr>
+                    <td>C1</td>
+                    <td>Amsterdam FIR via SOMVA (UP155)</td>
+                </tr>
+                <tr>
+                    <td>C2</td>
+                    <td>Amsterdam FIR via REDFA (UL620)</td>
+                </tr>
+                <tr>
+                    <td>C3</td>
+                    <td>Brussels FIR via SASKI inbound to Ostend/Koksjide and Brussels TMA</td>
+                </tr>
+                <tr>
+                    <td>D</td>
+                    <td>Exiting FIR via KOK (KONAN/VABIK)</td>
+                </tr>
+                <tr>
+                    <td>EB</td>
+                    <td>Brussels TMA via KOK</td>
+                </tr>
+                <tr>
+                    <td>D2</td>
+                    <td>Paris FIR via TRACA</td>
+                </tr>
+                <tr>
+                    <td>D3</td>
+                    <td>Paris FIR via MOTOX</td>
+                </tr>
+                <tr>
+                    <td>P</td>
+                    <td>Paris FIR via DPE (UM605)</td>
+                </tr>
+                <tr>
+                    <td>V</td>
+                    <td>Paris FIR via VEULE (UN615)</td>
+                </tr>
+                <tr>
+                    <td>E</td>
+                    <td>Paris FIR via ETRAT (UN859)</td>
+                </tr>
+                <tr>
+                    <td>W</td>
+                    <td>Paris FIR via NEVIL (G27)</td>
+                </tr>
+                <tr>
+                    <td>H</td>
+                    <td>Brest FIR via ORTAC (UL980)</td>
+                </tr>
+                <tr>
+                    <td>H2</td>
+                    <td>Brest FIR routing LELNA-DIN (UT260)</td>
+                </tr>
+                <tr>
+                    <td>H3</td>
+                    <td>Brest FIR routing LELNA-ARE (UN621)</td>
+                </tr>
+                <tr>
+                    <td>H4</td>
+                    <td>Brest FIR routing LORKU (UN866/UM195)</td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>Brest FIR via SKESO/SKERY (UN862)</td>
+                </tr>
+                <tr>
+                    <td>B2</td>
+                    <td>Brest FIR via MANIG (UN26)</td>
+                </tr>
+                <tr>
+                    <td>B3</td>
+                    <td>Brest FIR via SALCO (UN864/UN22/UM30)</td>
+                </tr>
+                <tr>
+                    <td>B4</td>
+                    <td>Brest FIR via ANNET/LIZAD/GANTO/SUPAP/PEMAK</td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>Shannon FIR via GAPLI</td>
+                </tr>
+                <tr>
+                    <td>M</td>
+                    <td>Shannon FIR via LULOX/LESLU/LEDGO/MOPAT</td>
+                </tr>
+                <tr>
+                    <td>S</td>
+                    <td>Shannon FIR via BANBA/EVRIN (UL607/UP4/UL175)</td>
+                </tr>
+                <tr>
+                    <td>S2</td>
+                    <td>Shannon FIR via SLANY (UL9)</td>
+                </tr>
+                <tr>
+                    <td>S3</td>
+                    <td>Shannon FIR via BAKUR (UN546)</td>
+                </tr>
+                <tr>
+                    <td>S4</td>
+                    <td>Shannon FIR via VATRY (UM17)</td>
+                </tr>
+                <tr>
+                    <td>T</td>
+                    <td>Shannon FIR via LIPGO (UL18)</td>
+                </tr>
+                <tr>
+                    <td>L</td>
+                    <td>Shannon FIR via BAGSO (UL70)</td>
+                </tr>
+                <tr>
+                    <td>G1</td>
+                    <td>Shannon FIR via MOLAK</td>
+                </tr>
+                <tr>
+                    <td>G2</td>
+                    <td>Shannon FIR via NIPIT</td>
+                </tr>
+                <tr>
+                    <td>G3</td>
+                    <td>Shannon FIR via ERNAN</td>
+                </tr>
+                <tr>
+                    <td>G4</td>
+                    <td>Shannon FIR via DEGOS</td>
+                </tr>
+                <tr>
+                    <td>G5</td>
+                    <td>Shannon FIR via NIMAT/ROTEV</td>
+                </tr>
+                <tr>
+                    <td>DW</td>
+                    <td>Dublin TMA via BAGSO/LIPGO/VATRY</td>
+                </tr>
+                <tr>
+                    <td>U5</td>
+                    <td>Shanwick FIR via BEL to NIBOG (55N)</td>
+                </tr>
+                <tr>
+                    <td>U6</td>
+                    <td>Shanwick FIR via BEL to MIMKU (56N)</td>
+                </tr>
+                <tr>
+                    <td>U7</td>
+                    <td>Shanwick FIR via BEL to GOMUP (57N)</td>
+                </tr>
+                <tr>
+                    <td>N5</td>
+                    <td>Shanwick FIR via POL to NIBOG (55N)</td>
+                </tr>
+                <tr>
+                    <td>N6</td>
+                    <td>Shanwick FIR via POL to MIMKU (56N)</td>
+                </tr>
+                <tr>
+                    <td>N</td>
+                    <td>Shanwick FIR via POL to IBROD (56.30N)</td>
+                </tr>
+                <tr>
+                    <td>N7</td>
+                    <td>Shanwick FIR via POL to GOMUP (57N)</td>
+                </tr>
+                <tr>
+                    <td>N8</td>
+                    <td>Shanwick FIR via POL to ERAKA (58N)</td>
+                </tr>
+                <tr>
+                    <td>N9</td>
+                    <td>Shanwick FIR via POL to BALIX (59N)</td>
+                </tr>
+                <tr>
+                    <td>Y</td>
+                    <td>Shanwick FIR via POL to ATSIX (60N)</td>
+                </tr>
+                <tr>
+                    <td>R</td>
+                    <td>Reykjavik FIR via RATSU</td>
+                </tr>
+                <tr>
+                    <td>R1</td>
+                    <td>Reykjavik FIR via MATIK</td>
+                </tr>
+                <tr>
+                    <td>R2</td>
+                    <td>Reykjavik FIR via OLKER</td>
+                </tr>
+                <tr>
+                    <td>R4</td>
+                    <td>Reykjavik FIR via GONUT</td>
+                </tr>
+                <tr>
+                    <td>R5</td>
+                    <td>Reykjavik FIR via LIRKI</td>
+                </tr>
+                <tr>
+                    <td>R6</td>
+                    <td>Reykjavik FIR via GUNPA</td>
+                </tr>
+                <tr>
+                    <td>Z1</td>
+                    <td>Stavanger FIR via PEPIN</td>
+                </tr>
+                <tr>
+                    <td>Z2</td>
+                    <td>Stavanger FIR via ORVIK</td>
+                </tr>
+                <tr>
+                    <td>Z3</td>
+                    <td>Stavanger FIR via KLONN</td>
+                </tr>
+                <tr>
+                    <td>Z4</td>
+                    <td>Stavanger FIR via ALOTI</td>
+                </tr>
+                <tr>
+                    <td>Z5</td>
+                    <td>Stavanger FIR via NIVUN</td>
+                </tr>
+            </table>
 
+        </div>
     </div>
-    <div id="stars" class="col s12">
-      <div id="star_table">
-        <input class="search" placeholder="Search" />
-        <table class="table table-bordered table-hover table-condensed">
-          <thead>
-            <tr>
-              <th title="Airport">Airport</th>
-              <th title="Ident">Ident</th>
-              <th title="Start">Start</th>
-              <th title="End">End</th>
-              <th title="Points">Points</th>
-            </tr>
-          </thead>
-          <tbody class="list">
-            <tr>
-              <td class="airport">EGLL</td>
-              <td class="ident">BIG4B</td>
-              <td class="start">ALESO</td>
-              <td class="end">BIG</td>
-              <td class="points">ETVAX(FL180)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLL</td>
-              <td class="ident">BNN1B</td>
-              <td class="start">NUGRA</td>
-              <td class="end">BNN</td>
-              <td class="points">TOBID(FL200) <br /> SOPIT(FL150)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLL</td>
-              <td class="ident">BNN1C</td>
-              <td class="start">DTY</td>
-              <td class="end">BNN</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGLL</td>
-              <td class="ident">BNN4A</td>
-              <td class="start">HON</td>
-              <td class="end">BNN</td>
-              <td class="points">SOPIT(FL150)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLL</td>
-              <td class="ident">LOGAN1H</td>
-              <td class="start">LOGAN</td>
-              <td class="end">LAM</td>
-              <td class="points">LOGAN(FL240/FL250)<br /> SABER(FL160)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLL</td>
-              <td class="ident">OCK1A</td>
-              <td class="start">KENET</td>
-              <td class="end">OCK</td>
-              <td class="points">KENET(FL140)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLL</td>
-              <td class="ident">OCK2C</td>
-              <td class="start">SAM</td>
-              <td class="end">OCK</td>
-              <td class="points">HAZEL (FL130)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLL</td>
-              <td class="ident">OCK2F</td>
-              <td class="start">BEDEK</td>
-              <td class="end">OCK</td>
-              <td class="points">BEDEK(FL140)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLL</td>
-              <td class="ident">OCK3E</td>
-              <td class="start">BILNI</td>
-              <td class="end">OCK</td>
-              <td class="points">KUMIL(FL210)<br /> HAZEL(FL130)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLL</td>
-              <td class="ident">OCK4B</td>
-              <td class="start">DOMUT</td>
-              <td class="end">OCK</td>
-              <td class="points">HAZEL (FL130)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLL</td>
-              <td class="ident">OTMET1H</td>
-              <td class="start">OTMET</td>
-              <td class="end">OCK</td>
-              <td class="points">OTMET(FL270)<br /> NEDUL(FL210)<br /> HAZEL(FL130)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLL</td>
-              <td class="ident">ROXOG1H</td>
-              <td class="start">ROXOG</td>
-              <td class="end">OCK</td>
-              <td class="points">HAZEL (FL130)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGBB</td>
-              <td class="ident">CHASE1C</td>
-              <td class="start">WAL</td>
-              <td class="end">CHASE</td>
-              <td class="points">CHASE(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGBB</td>
-              <td class="ident">CHASE2D</td>
-              <td class="start">AMPIT</td>
-              <td class="end">CHASE</td>
-              <td class="points">NOKIN(FL200)<br /> CHASE(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGBB</td>
-              <td class="ident">CHASE3F</td>
-              <td class="start">BEGAM</td>
-              <td class="end">CHASE</td>
-              <td class="points">MCT(FL200)<br /> CHASE(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGBB</td>
-              <td class="ident">CHASE3G</td>
-              <td class="start">POL</td>
-              <td class="end">CHASE</td>
-              <td class="points">CHASE(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGBB</td>
-              <td class="ident">CHASE3H</td>
-              <td class="start">DESIG</td>
-              <td class="end">CHASE</td>
-              <td class="points">VEGUS(FL290)<br /> MCT(FL200)<br /> CHASE(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGBB</td>
-              <td class="ident">CHASE4B</td>
-              <td class="start">CROFT</td>
-              <td class="end">CHASE</td>
-              <td class="points">MCT(FL200)<br /> CHASE(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGBB</td>
-              <td class="ident">GROVE1B</td>
-              <td class="start">WCO</td>
-              <td class="end">GROVE</td>
-              <td class="points">D12HON(FL80)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGBB</td>
-              <td class="ident">GROVE1C</td>
-              <td class="start">BUZAD</td>
-              <td class="end">GROVE</td>
-              <td class="points">HEMEL(FL220)<br /> D12HON(FL80)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGCC</td>
-              <td class="ident">DAYNE1B</td>
-              <td class="start">LESTA</td>
-              <td class="end">DAYNE</td>
-              <td class="points">D25TNT(FL200)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGCC</td>
-              <td class="ident">DAYNE2A</td>
-              <td class="start">TNT</td>
-              <td class="end">DAYNE</td>
-              <td class="points">D25TNT/ELVOS(FL200)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGCC</td>
-              <td class="ident">MIRSI1A</td>
-              <td class="start">MONTY</td>
-              <td class="end">MIRSI</td>
-              <td class="points">OKTEM(FL200)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGCC</td>
-              <td class="ident">MIRSI2B</td>
-              <td class="start">MALUD</td>
-              <td class="end">MIRSI</td>
-              <td class="points">LIFFY(FL270)<br /> MALUD(FL170)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGCC</td>
-              <td class="ident">MIRSI2C</td>
-              <td class="start">PENIL</td>
-              <td class="end">MIRSI</td>
-              <td class="points">PENIL(FL170)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGCC</td>
-              <td class="ident">MIRSI2D</td>
-              <td class="start">GIGTO</td>
-              <td class="end">MIRSI</td>
-              <td class="points">MAKUX(FL270)<br /> IBRAR(FL170)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGCC</td>
-              <td class="ident">ROSUN1F</td>
-              <td class="start">OTBED</td>
-              <td class="end">ROSUN</td>
-              <td class="points">OTBED(FL290)<br /> GOLES(FL170)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGCC</td>
-              <td class="ident">ROSUN1G</td>
-              <td class="start">LIBSO</td>
-              <td class="end">ROSUN</td>
-              <td class="points">GOLES(FL170)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGCC</td>
-              <td class="ident">ROSUN2A</td>
-              <td class="start">LAKEY</td>
-              <td class="end">ROSUN</td>
-              <td class="points">LAKEY(FL200)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGCC</td>
-              <td class="ident">ROSUN2B</td>
-              <td class="start">SETEL</td>
-              <td class="end">ROSUN</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGCC</td>
-              <td class="ident">ROSUN2E</td>
-              <td class="start">GOLES</td>
-              <td class="end">ROSUN</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGCC</td>
-              <td class="ident">ROSUN4D</td>
-              <td class="start">TILNI</td>
-              <td class="end">ROSUN</td>
-              <td class="points">TILNI(FL230)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGFF</td>
-              <td class="ident">CDF1A</td>
-              <td class="start">RETSI</td>
-              <td class="end">CDF</td>
-              <td class="points">AMRAL(FL160)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGFF</td>
-              <td class="ident">CDF1B</td>
-              <td class="start">STU</td>
-              <td class="end">CDF</td>
-              <td class="points">D10AMMAN(FL170)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGFF</td>
-              <td class="ident">CDF1C</td>
-              <td class="start">CPT</td>
-              <td class="end">CDF</td>
-              <td class="points">CPT(FL260)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGFF</td>
-              <td class="ident">CDF1E</td>
-              <td class="start">TALGA</td>
-              <td class="end">CDF</td>
-              <td class="points">D10TALGA(FL160)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGFF</td>
-              <td class="ident">CDF3D</td>
-              <td class="start">BHD</td>
-              <td class="end">CDF</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGGD</td>
-              <td class="ident">ADVED1A(RW09)</td>
-              <td class="start">EXMOR</td>
-              <td class="end">ADVED</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGGD</td>
-              <td class="ident">BAXUN1A(RW27)</td>
-              <td class="start">EXMOR</td>
-              <td class="end">BAXUN</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGGD</td>
-              <td class="ident">BRI1A</td>
-              <td class="start">RETSI</td>
-              <td class="end">BRI</td>
-              <td class="points">AMRAL(FL160)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGD</td>
-              <td class="ident">BRI1B</td>
-              <td class="start">STU</td>
-              <td class="end">BRI</td>
-              <td class="points">D10AMMAN(FL170)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGD</td>
-              <td class="ident">BRI1C</td>
-              <td class="start">CPT</td>
-              <td class="end">BRI</td>
-              <td class="points">CPT(FL220)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGD</td>
-              <td class="ident">BRI1E</td>
-              <td class="start">TALGA</td>
-              <td class="end">BRI</td>
-              <td class="points">D10TALGA(FL160)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGD</td>
-              <td class="ident">BRI2D</td>
-              <td class="start">BHD</td>
-              <td class="end">BRI</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGGP</td>
-              <td class="ident">KEGUN1D</td>
-              <td class="start">MONTY</td>
-              <td class="end">KEGUN</td>
-              <td class="points">D10OKTEM(FL200)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGP</td>
-              <td class="ident">KEGUN2A</td>
-              <td class="start">LESTA</td>
-              <td class="end">KEGUN</td>
-              <td class="points">LESTA(FL200)<br /> NANTI(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGP</td>
-              <td class="ident">KEGUN2B</td>
-              <td class="start">TNT</td>
-              <td class="end">KEGUN</td>
-              <td class="points">D25TNT/ELVOS(FL200)<br /> NANTI(FL200)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGP</td>
-              <td class="ident">KEGUN2C</td>
-              <td class="start">PEDIG</td>
-              <td class="end">KEGUN</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGGP</td>
-              <td class="ident">TIPOD1C</td>
-              <td class="start">CROFT</td>
-              <td class="end">TIPOD</td>
-              <td class="points">LAKEY(FL200)/BEGAM(FL170)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGP</td>
-              <td class="ident">TIPOD1D</td>
-              <td class="start">POL</td>
-              <td class="end">TIPOD</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGGP</td>
-              <td class="ident">TIPOD1E</td>
-              <td class="start">DESIG</td>
-              <td class="end">TIPOD</td>
-              <td class="points">VEGUS(FL290)<br /> UPTON(FL170)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGP</td>
-              <td class="ident">TIPOD1J</td>
-              <td class="start">MONTY</td>
-              <td class="end">TIPOD</td>
-              <td class="points">D10OKTEM(FL200)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGP</td>
-              <td class="ident">TIPOD2B</td>
-              <td class="start">PENIL</td>
-              <td class="end">TIPOD</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGGP</td>
-              <td class="ident">TIPOD2F</td>
-              <td class="start">LESTA</td>
-              <td class="end">TIPOD</td>
-              <td class="points">LESTA(FL200)<br /> NANTI(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGP</td>
-              <td class="ident">TIPOD2G</td>
-              <td class="start">TNT</td>
-              <td class="end">TIPOD</td>
-              <td class="points">D25TNT/ELVOS(FL200)<br /> NANTI(FL200)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGP</td>
-              <td class="ident">TIPOD2H</td>
-              <td class="start">PEDIG</td>
-              <td class="end">TIPOD</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGGP</td>
-              <td class="ident">TIPOD3A</td>
-              <td class="start">MALUD</td>
-              <td class="end">TIPOD</td>
-              <td class="points">LIFFY(FL270)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">IDESI1A</td>
-              <td class="start">IDESI</td>
-              <td class="end">ABBOT</td>
-              <td class="points">IDESI(FL180)<br /> LAPRA(FL120)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">LOGAN1A</td>
-              <td class="start">LOGAN</td>
-              <td class="end">ABBOT</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">DET1A</td>
-              <td class="start">DET</td>
-              <td class="end">ABBOT</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">BARMI1A</td>
-              <td class="start">BARMI</td>
-              <td class="end">ABBOT</td>
-              <td class="points">BARMI(FL260)<br /> MEGEL(FL220)<br /> LAPRA(FL120)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">LOREL1B</td>
-              <td class="start">KATHY</td>
-              <td class="end">LOREL</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">LOREL1K</td>
-              <td class="start">DTY</td>
-              <td class="end">LOREL</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">LOREL2D</td>
-              <td class="start">GIBSO</td>
-              <td class="end">LOREL</td>
-              <td class="points">AVANT(FL190)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">LOREL2H</td>
-              <td class="start">HON</td>
-              <td class="end">LOREL</td>
-              <td class="points">CLIPY(FL150)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">LOREL2L</td>
-              <td class="start">KENET</td>
-              <td class="end">LOREL</td>
-              <td class="points">D10KENET(FL140)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">LOREL2S</td>
-              <td class="start">BEDEK</td>
-              <td class="end">LOREL</td>
-              <td class="points">BEDEK(FL180)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">LOREL3G</td>
-              <td class="start">MCT</td>
-              <td class="end">LOREL</td>
-              <td class="points">ROGBI(FL200)<br /> CLIPY(FL150)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">LOREL4C</td>
-              <td class="start">AVANT</td>
-              <td class="end">LOREL</td>
-              <td class="points">AVANT(FL190)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">LOREL4Q</td>
-              <td class="start">BANVA</td>
-              <td class="end">LOREL</td>
-              <td class="points">MAY(FL200)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">LOREL5A</td>
-              <td class="start">WCO</td>
-              <td class="end">LOREL</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">LOREL5F</td>
-              <td class="start">LISTO</td>
-              <td class="end">LOREL</td>
-              <td class="points">ROGBI(FL200)<br /> CLIPY(FL150)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGGW</td>
-              <td class="ident">TELTU1L</td>
-              <td class="start">TELTU</td>
-              <td class="end">LOREL</td>
-              <td class="points">TELTU(FL190)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGHH</td>
-              <td class="ident">NEDUL1A</td>
-              <td class="start">THRED</td>
-              <td class="end">SAM</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGHH</td>
-              <td class="ident">SAM1B</td>
-              <td class="start">UMBUR</td>
-              <td class="end">SAM</td>
-              <td class="points">OCK(FL160)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGHH</td>
-              <td class="ident">SAM1C</td>
-              <td class="start">WCO</td>
-              <td class="end">SAM</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGHH</td>
-              <td class="ident">SAM1E</td>
-              <td class="start">PEPUL</td>
-              <td class="end">SAM</td>
-              <td class="points">PEPUL(FL200)<br /> BAMBO(FL150)<br /> RISIN(FL110)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGHH</td>
-              <td class="ident">SAM1F</td>
-              <td class="start">KENET</td>
-              <td class="end">SAM</td>
-              <td class="points">D15CPT(FL120)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGHH</td>
-              <td class="ident">SAM1G</td>
-              <td class="start">HON</td>
-              <td class="end">SAM</td>
-              <td class="points">BAMBO(FL150)<br /> RISIN(FL110)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGHH</td>
-              <td class="ident">SAM2A</td>
-              <td class="start">NEDEX</td>
-              <td class="end">SAM</td>
-              <td class="points">abmRISIN(FL110)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGHH</td>
-              <td class="ident">SAM2D</td>
-              <td class="start">ELDAX</td>
-              <td class="end">SAM</td>
-              <td class="points">D5ELDAX(FL180)<br /> GIVUN(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGHI</td>
-              <td class="ident">NEDUL1A</td>
-              <td class="start">THRED</td>
-              <td class="end">SAM</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGHI</td>
-              <td class="ident">SAM1B</td>
-              <td class="start">UMBUR</td>
-              <td class="end">SAM</td>
-              <td class="points">OCK(FL160)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGHI</td>
-              <td class="ident">SAM1C</td>
-              <td class="start">WCO</td>
-              <td class="end">SAM</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGHI</td>
-              <td class="ident">SAM1E</td>
-              <td class="start">PEPUL</td>
-              <td class="end">SAM</td>
-              <td class="points">PEPUL(FL200)<br /> BAMBO(FL150)<br /> RISIN(FL110)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGHI</td>
-              <td class="ident">SAM1F</td>
-              <td class="start">KENET</td>
-              <td class="end">SAM</td>
-              <td class="points">D15CPT(FL120)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGHI</td>
-              <td class="ident">SAM1G</td>
-              <td class="start">HON</td>
-              <td class="end">SAM</td>
-              <td class="points">BAMBO(FL150)<br /> RISIN(FL110)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGHI</td>
-              <td class="ident">SAM2A</td>
-              <td class="start">NEDEX</td>
-              <td class="end">SAM</td>
-              <td class="points">abmRISIN(FL110)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGHI</td>
-              <td class="ident">SAM2D</td>
-              <td class="start">ELDAX</td>
-              <td class="end">SAM</td>
-              <td class="points">D5ELDAX(FL180)<br /> GIVUN(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKB</td>
-              <td class="ident">GODLU1A</td>
-              <td class="start">BEDEK</td>
-              <td class="end">GODLU</td>
-              <td class="points">BEDEK(FL180)<br /> BIG(FL160)<br /> GODLU(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKB</td>
-              <td class="ident">GODLU1C</td>
-              <td class="start">KONAN</td>
-              <td class="end">GODLU</td>
-              <td class="points">GODLU(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKB</td>
-              <td class="ident">GODLU1D</td>
-              <td class="start">SOVAT</td>
-              <td class="end">GODLU</td>
-              <td class="points">GODLU(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKB</td>
-              <td class="ident">GODLU1F</td>
-              <td class="start">NEVIL</td>
-              <td class="end">GODLU</td>
-              <td class="points">NEVIL(FL220)<br /> NETVU(FL140)<br /> GODLU(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKB</td>
-              <td class="ident">GODLU1G</td>
-              <td class="start">DOMUT</td>
-              <td class="end">GODLU</td>
-              <td class="points">BIDVA (FL130)<br /> GODLU(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKB</td>
-              <td class="ident">GODLU1H</td>
-              <td class="start">SAM</td>
-              <td class="end">GODLU</td>
-              <td class="points">BIDVA (FL130)<br /> GODLU(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKB</td>
-              <td class="ident">GODLU1J</td>
-              <td class="start">GIBSO</td>
-              <td class="end">GODLU</td>
-              <td class="points">AVANT(FL190)<br /> BIG(FL160)<br /> GODLU(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKB</td>
-              <td class="ident">JACKO1A</td>
-              <td class="start">KENET</td>
-              <td class="end">JACKO</td>
-              <td class="points">KENET(FL140)<br /> JACKO(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKB</td>
-              <td class="ident">SUMUM1C</td>
-              <td class="start">SUMUM</td>
-              <td class="end">JACKO</td>
-              <td class="points">INLOD/MOMIC(FL220)<br /> JACKO(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKB</td>
-              <td class="ident">XAMAN1C</td>
-              <td class="start">XAMAN</td>
-              <td class="end">JACKO</td>
-              <td class="points">JACKO(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKB</td>
-              <td class="ident">JACKO1H</td>
-              <td class="start">HON</td>
-              <td class="end">JACKO</td>
-              <td class="points">ROGBI(FL200)<br /> INLIM(FL120)<br /> JACKO(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKB</td>
-              <td class="ident">JACKO1M</td>
-              <td class="start">MCT</td>
-              <td class="end">JACKO</td>
-              <td class="points">ODVOD(FL220)<br /> INLIM(FL120)<br /> JACKO(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKB</td>
-              <td class="ident">JACKO2L</td>
-              <td class="start">LISTO</td>
-              <td class="end">JACKO</td>
-              <td class="points">ODVOD(FL220)<br /> INLIM(FL120)<br /> JACKO(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKK</td>
-              <td class="ident">OTMET1G</td>
-              <td class="start">OTMET</td>
-              <td class="end">WILLO</td>
-              <td class="points">OTMET(FL270)<br /> NEDUL(FL210)<br /> TELTU(FL130)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKK</td>
-              <td class="ident">TEBRA1G</td>
-              <td class="start">TEBRA</td>
-              <td class="end">TIMBA</td>
-              <td class="points">ODROB/BLIXY/SUNUP(FL220)<br /> ABTUM (FL140)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKK</td>
-              <td class="ident">TIMBA2G</td>
-              <td class="start">NEVIL</td>
-              <td class="end">TIMBA</td>
-              <td class="points">NEVIL(FL220)<br /> NETVU(FL140)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKK</td>
-              <td class="ident">KONAN1G</td>
-              <td class="start">KONAN</td>
-              <td class="end">TIMBA</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGKK</td>
-              <td class="ident">TIMBA4B</td>
-              <td class="start">KUNAV</td>
-              <td class="end">TIMBA</td>
-              <td class="points">AMDUT(FL160)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKK</td>
-              <td class="ident">VASUX1G</td>
-              <td class="start">VASUX</td>
-              <td class="end">WILLO</td>
-              <td class="points">TELTU(FL130)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKK</td>
-              <td class="ident">WILLO1F</td>
-              <td class="start">KENET</td>
-              <td class="end">WILLO</td>
-              <td class="points">KENET(FL140)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKK</td>
-              <td class="ident">WILLO2H</td>
-              <td class="start">BEDEK</td>
-              <td class="end">WILLO</td>
-              <td class="points">BEDEK(FL140)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKK</td>
-              <td class="ident">WILLO3A</td>
-              <td class="start">SAM</td>
-              <td class="end">WILLO</td>
-              <td class="points">GWC(FL130)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKK</td>
-              <td class="ident">WILLO3B</td>
-              <td class="start">KIDLI</td>
-              <td class="end">WILLO</td>
-              <td class="points">DISIT(FL200)<br /> KIDLI(FL150)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKK</td>
-              <td class="ident">WILLO3D</td>
-              <td class="start">GIBSO</td>
-              <td class="end">WILLO</td>
-              <td class="points">BILNI(FL270)<br /> KUMIL(FL210)<br /> GWC(FL130)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGKK</td>
-              <td class="ident">WILLO4C</td>
-              <td class="start">DOMUT</td>
-              <td class="end">WILLO</td>
-              <td class="points">GWC(FL130)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLC</td>
-              <td class="ident">GODLU1A</td>
-              <td class="start">BEDEK</td>
-              <td class="end">GODLU</td>
-              <td class="points">BEDEK(FL180)<br /> BIG(FL160)<br /> GODLU(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLC</td>
-              <td class="ident">GODLU1C</td>
-              <td class="start">KONAN</td>
-              <td class="end">GODLU</td>
-              <td class="points">GODLU(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLC</td>
-              <td class="ident">GODLU1D</td>
-              <td class="start">SOVAT</td>
-              <td class="end">GODLU</td>
-              <td class="points">GODLU(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLC</td>
-              <td class="ident">GODLU1F</td>
-              <td class="start">NEVIL</td>
-              <td class="end">GODLU</td>
-              <td class="points">NEVIL(FL220)<br /> NETVU(FL140)<br /> GODLU(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLC</td>
-              <td class="ident">GODLU1G</td>
-              <td class="start">DOMUT</td>
-              <td class="end">GODLU</td>
-              <td class="points">BIDVA (FL130)<br /> GODLU(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLC</td>
-              <td class="ident">GODLU1H</td>
-              <td class="start">SAM</td>
-              <td class="end">GODLU</td>
-              <td class="points">BIDVA (FL130)<br /> GODLU(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLC</td>
-              <td class="ident">GODLU1J</td>
-              <td class="start">GIBSO</td>
-              <td class="end">GODLU</td>
-              <td class="points">AVANT(FL190)<br /> BIG(FL160)<br /> GODLU(FL100)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLC</td>
-              <td class="ident">JACKO1A</td>
-              <td class="start">KENET</td>
-              <td class="end">JACKO</td>
-              <td class="points">KENET(FL140)<br /> JACKO(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLC</td>
-              <td class="ident">SUMUM1C</td>
-              <td class="start">SUMUM</td>
-              <td class="end">JACKO</td>
-              <td class="points">INLOD/MOMIC(FL220)<br /> JACKO(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLC</td>
-              <td class="ident">XAMAN1C</td>
-              <td class="start">XAMAN</td>
-              <td class="end">JACKO</td>
-              <td class="points">JACKO(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLC</td>
-              <td class="ident">JACKO1H</td>
-              <td class="start">HON</td>
-              <td class="end">JACKO</td>
-              <td class="points">ROGBI(FL200)<br /> INLIM(FL120)<br /> JACKO(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLC</td>
-              <td class="ident">JACKO1M</td>
-              <td class="start">MCT</td>
-              <td class="end">JACKO</td>
-              <td class="points">ODVOD(FL220)<br /> INLIM(FL120)<br /> JACKO(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGLC</td>
-              <td class="ident">JACKO2L</td>
-              <td class="start">LISTO</td>
-              <td class="end">JACKO</td>
-              <td class="points">ODVOD(FL220)<br /> INLIM(FL120)<br /> JACKO(FL90)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGMC</td>
-              <td class="ident">SUMUM1S</td>
-              <td class="start">SUMUM</td>
-              <td class="end">GEGMU</td>
-              <td class="points">INLOD/MOMIC(FL220)<br /> GEGMU(6A)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGMC</td>
-              <td class="ident">XAMAN1S</td>
-              <td class="start">XAMAN</td>
-              <td class="end">GEGMU</td>
-              <td class="points">GEGMU(6A)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGMC</td>
-              <td class="ident">GEGMU1F</td>
-              <td class="start">SOVAT</td>
-              <td class="end">GEGMU</td>
-              <td class="points">SOVAT(FL120)<br /> OKVAP(FL90)<br /> ATSAP(FL70)<br /> GEGMU (6A)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGMC</td>
-              <td class="ident">GEGMU1G</td>
-              <td class="start">NEVIL</td>
-              <td class="end">GEGMU</td>
-              <td class="points">NEVIL(FL220)<br /> NETVU(FL140)<br /> OKVAP(FL90)<br /> ATSAP(FL70)<br /> GEGMU (6A)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGMC</td>
-              <td class="ident">GEGMU1J</td>
-              <td class="start">SAM</td>
-              <td class="end">GEGMU</td>
-              <td class="points">BIDVA(FL130)<br /> OKVAP(FL90)<br /> ATSAP(FL70)<br /> GEGMU (6A)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGMC</td>
-              <td class="ident">GEGMU1K</td>
-              <td class="start">DOMUT</td>
-              <td class="end">GEGMU</td>
-              <td class="points">BIDVA(FL130)<br /> OKVAP(FL90)<br /> ATSAP(FL70)<br /> GEGMU (6A)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGMC</td>
-              <td class="ident">SPEAR1A</td>
-              <td class="start">KENET</td>
-              <td class="end">SPEAR</td>
-              <td class="points">D10KENET(FL140)<br /> SPEAR (5A)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGMC</td>
-              <td class="ident">SPEAR1M</td>
-              <td class="start">MCT</td>
-              <td class="end">SPEAR</td>
-              <td class="points">ROGBI(FL200)<br /> CLIPY(FL150)<br /> SPEAR(5A)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGMC</td>
-              <td class="ident">SPEAR2H</td>
-              <td class="start">HON</td>
-              <td class="end">SPEAR</td>
-              <td class="points">CLIPY(FL150)<br /> SPEAR(5A)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGMC</td>
-              <td class="ident">SPEAR2L</td>
-              <td class="start">LISTO</td>
-              <td class="end">SPEAR</td>
-              <td class="points">ROGBI(FL200)<br /> CLIPY(FL150)<br /> SPEAR(5A)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGNX</td>
-              <td class="ident">AMPIT1E</td>
-              <td class="start">AMPIT</td>
-              <td class="end">ROKUP</td>
-              <td class="points">NOKIN(FL200)<br /> DIPSO<br /> ROKUP(FL80)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGNX</td>
-              <td class="ident">PIGOT1H</td>
-              <td class="start">DTY</td>
-              <td class="end">PIGOT</td>
-              <td class="points">UPDUK<br /> ROKUP(FL80)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGNX</td>
-              <td class="ident">PIGOT1J</td>
-              <td class="start">WELIN</td>
-              <td class="end">PIGOT</td>
-              <td class="points">HEMEL(FL220)<br />UPDUK<br /> ROKUP(FL80)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGNX</td>
-              <td class="ident">ROKUP1B</td>
-              <td class="start">CROFT</td>
-              <td class="end">ROKUP</td>
-              <td class="points">MCT(FL200)<br /> DIPSO<br /> ROKUP(FL80)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGNX</td>
-              <td class="ident">ROKUP1F</td>
-              <td class="start">POL</td>
-              <td class="end">ROKUP</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGNX</td>
-              <td class="ident">ROKUP1G</td>
-              <td class="start">DESIG</td>
-              <td class="end">ROKUP</td>
-              <td class="points">VEGUS(FL290)<br /> MCT(FL200)<br /> DIPSO<br /> ROKUP(FL80)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGNX</td>
-              <td class="ident">ROKUP1K</td>
-              <td class="start">BEGAM</td>
-              <td class="end">ROKUP</td>
-              <td class="points">MCT(FL200)<br /> DIPSO<br /> ROKUP(FL80)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGNX</td>
-              <td class="ident">WAL1E</td>
-              <td class="start">WAL</td>
-              <td class="end">ROKUP</td>
-              <td class="points">DIPSO<br /> ROKUP(FL80)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">IDESI1A</td>
-              <td class="start">IDESI</td>
-              <td class="end">ABBOT</td>
-              <td class="points">IDESI(FL180)<br /> LAPRA(FL120)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">LOGAN1A</td>
-              <td class="start">LOGAN</td>
-              <td class="end">ABBOT</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">DET1A</td>
-              <td class="start">DET</td>
-              <td class="end">ABBOT</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">BARMI1A</td>
-              <td class="start">BARMI</td>
-              <td class="end">ABBOT</td>
-              <td class="points">BARMI(FL260)<br /> MEGEL(FL220)<br /> LAPRA(FL120)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">LOREL1B</td>
-              <td class="start">KATHY</td>
-              <td class="end">LOREL</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">LOREL1K</td>
-              <td class="start">DTY</td>
-              <td class="end">LOREL</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">LOREL2D</td>
-              <td class="start">GIBSO</td>
-              <td class="end">LOREL</td>
-              <td class="points">AVANT(FL190)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">LOREL2H</td>
-              <td class="start">HON</td>
-              <td class="end">LOREL</td>
-              <td class="points">CLIPY(FL150)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">LOREL2L</td>
-              <td class="start">KENET</td>
-              <td class="end">LOREL</td>
-              <td class="points">D10KENET(FL140)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">LOREL2S</td>
-              <td class="start">BEDEK</td>
-              <td class="end">LOREL</td>
-              <td class="points">BEDEK(FL180)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">LOREL3G</td>
-              <td class="start">MCT</td>
-              <td class="end">LOREL</td>
-              <td class="points">ROGBI(FL200)<br /> CLIPY(FL150)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">LOREL4C</td>
-              <td class="start">AVANT</td>
-              <td class="end">LOREL</td>
-              <td class="points">AVANT(FL190)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">LOREL4Q</td>
-              <td class="start">BANVA</td>
-              <td class="end">LOREL</td>
-              <td class="points">MAY(FL200)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">LOREL5A</td>
-              <td class="start">WCO</td>
-              <td class="end">LOREL</td>
-              <td class="points"></td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">LOREL5F</td>
-              <td class="start">LISTO</td>
-              <td class="end">LOREL</td>
-              <td class="points">ROGBI(FL200)<br /> CLIPY(FL150)</td>
-            </tr>
-            <tr>
-              <td class="airport">EGSS</td>
-              <td class="ident">TELTU1L</td>
-              <td class="start">TELTU</td>
-              <td class="end">LOREL</td>
-              <td class="points">TELTU(FL190)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-    </div>
-    <div id="search" class="col s12">
-      <input id="icao" type="text" maxlength="4" size="4" placeholder="Search Callsign or Location" />
-      <br /><br />
-      <button class="btn" type="button" onclick="loadCallsign()">Callsign</button>
-      <button class="btn" type="button" onclick="loadLocation()">Location</button>
-      <div id="result">
-      </div>
-    </div>
-    <div id="ic" class="col s12">
-      <table class="table table-bordered table-hover table-condensed">
-        <thead>
-          <tr>
-            <th title="Intention Code">Intention Code</th>
-            <th title="Route">Route</th>
-          </tr>
-        </thead>
-        <tr>
-          <td>K1</td>
-          <td>Copenhagen FIR via VAXIT</td>
-        </tr>
-        <tr>
-          <td>K2</td>
-          <td>Copenhagen FIR via TINAC/PETIL</td>
-        </tr>
-        <tr>
-          <td>K3</td>
-          <td>Copenhagen FIR via INBOB (UM604)</td>
-        </tr>
-        <tr>
-          <td>AM</td>
-          <td>Amsterdam TMA</td>
-        </tr>
-        <tr>
-          <td>F</td>
-          <td>Amsterdam FIR via LAMSO (UL603)</td>
-        </tr>
-        <tr>
-          <td>C1</td>
-          <td>Amsterdam FIR via SOMVA (UP155)</td>
-        </tr>
-        <tr>
-          <td>C2</td>
-          <td>Amsterdam FIR via REDFA (UL620)</td>
-        </tr>
-        <tr>
-          <td>C3</td>
-          <td>Brussels FIR via SASKI inbound to Ostend/Koksjide and Brussels TMA</td>
-        </tr>
-        <tr>
-          <td>D</td>
-          <td>Exiting FIR via KOK (KONAN/VABIK)</td>
-        </tr>
-        <tr>
-          <td>EB</td>
-          <td>Brussels TMA via KOK</td>
-        </tr>
-        <tr>
-          <td>D2</td>
-          <td>Paris FIR via TRACA</td>
-        </tr>
-        <tr>
-          <td>D3</td>
-          <td>Paris FIR via MOTOX</td>
-        </tr>
-        <tr>
-          <td>P</td>
-          <td>Paris FIR via DPE (UM605)</td>
-        </tr>
-        <tr>
-          <td>V</td>
-          <td>Paris FIR via VEULE (UN615)</td>
-        </tr>
-        <tr>
-          <td>E</td>
-          <td>Paris FIR via ETRAT (UN859)</td>
-        </tr>
-        <tr>
-          <td>W</td>
-          <td>Paris FIR via NEVIL (G27)</td>
-        </tr>
-        <tr>
-          <td>H</td>
-          <td>Brest FIR via ORTAC (UL980)</td>
-        </tr>
-        <tr>
-          <td>H2</td>
-          <td>Brest FIR routing LELNA-DIN (UT260)</td>
-        </tr>
-        <tr>
-          <td>H3</td>
-          <td>Brest FIR routing LELNA-ARE (UN621)</td>
-        </tr>
-        <tr>
-          <td>H4</td>
-          <td>Brest FIR routing LORKU (UN866/UM195)</td>
-        </tr>
-        <tr>
-          <td>B</td>
-          <td>Brest FIR via SKESO/SKERY (UN862)</td>
-        </tr>
-        <tr>
-          <td>B2</td>
-          <td>Brest FIR via MANIG (UN26)</td>
-        </tr>
-        <tr>
-          <td>B3</td>
-          <td>Brest FIR via SALCO (UN864/UN22/UM30)</td>
-        </tr>
-        <tr>
-          <td>B4</td>
-          <td>Brest FIR via ANNET/LIZAD/GANTO/SUPAP/PEMAK</td>
-        </tr>
-        <tr>
-          <td>A</td>
-          <td>Shannon FIR via GAPLI</td>
-        </tr>
-        <tr>
-          <td>M</td>
-          <td>Shannon FIR via LULOX/LESLU/LEDGO/MOPAT</td>
-        </tr>
-        <tr>
-          <td>S</td>
-          <td>Shannon FIR via BANBA/EVRIN (UL607/UP4/UL175)</td>
-        </tr>
-        <tr>
-          <td>S2</td>
-          <td>Shannon FIR via SLANY (UL9)</td>
-        </tr>
-        <tr>
-          <td>S3</td>
-          <td>Shannon FIR via BAKUR (UN546)</td>
-        </tr>
-        <tr>
-          <td>S4</td>
-          <td>Shannon FIR via VATRY (UM17)</td>
-        </tr>
-        <tr>
-          <td>T</td>
-          <td>Shannon FIR via LIPGO (UL18)</td>
-        </tr>
-        <tr>
-          <td>L</td>
-          <td>Shannon FIR via BAGSO (UL70)</td>
-        </tr>
-        <tr>
-          <td>G1</td>
-          <td>Shannon FIR via MOLAK</td>
-        </tr>
-        <tr>
-          <td>G2</td>
-          <td>Shannon FIR via NIPIT</td>
-        </tr>
-        <tr>
-          <td>G3</td>
-          <td>Shannon FIR via ERNAN</td>
-        </tr>
-        <tr>
-          <td>G4</td>
-          <td>Shannon FIR via DEGOS</td>
-        </tr>
-        <tr>
-          <td>G5</td>
-          <td>Shannon FIR via NIMAT/ROTEV</td>
-        </tr>
-        <tr>
-          <td>DW</td>
-          <td>Dublin TMA via BAGSO/LIPGO/VATRY</td>
-        </tr>
-        <tr>
-          <td>U5</td>
-          <td>Shanwick FIR via BEL to NIBOG (55N)</td>
-        </tr>
-        <tr>
-          <td>U6</td>
-          <td>Shanwick FIR via BEL to MIMKU (56N)</td>
-        </tr>
-        <tr>
-          <td>U7</td>
-          <td>Shanwick FIR via BEL to GOMUP (57N)</td>
-        </tr>
-        <tr>
-          <td>N5</td>
-          <td>Shanwick FIR via POL to NIBOG (55N)</td>
-        </tr>
-        <tr>
-          <td>N6</td>
-          <td>Shanwick FIR via POL to MIMKU (56N)</td>
-        </tr>
-        <tr>
-          <td>N</td>
-          <td>Shanwick FIR via POL to IBROD (56.30N)</td>
-        </tr>
-        <tr>
-          <td>N7</td>
-          <td>Shanwick FIR via POL to GOMUP (57N)</td>
-        </tr>
-        <tr>
-          <td>N8</td>
-          <td>Shanwick FIR via POL to ERAKA (58N)</td>
-        </tr>
-        <tr>
-          <td>N9</td>
-          <td>Shanwick FIR via POL to BALIX (59N)</td>
-        </tr>
-        <tr>
-          <td>Y</td>
-          <td>Shanwick FIR via POL to ATSIX (60N)</td>
-        </tr>
-        <tr>
-          <td>R</td>
-          <td>Reykjavik FIR via RATSU</td>
-        </tr>
-        <tr>
-          <td>R1</td>
-          <td>Reykjavik FIR via MATIK</td>
-        </tr>
-        <tr>
-          <td>R2</td>
-          <td>Reykjavik FIR via OLKER</td>
-        </tr>
-        <tr>
-          <td>R4</td>
-          <td>Reykjavik FIR via GONUT</td>
-        </tr>
-        <tr>
-          <td>R5</td>
-          <td>Reykjavik FIR via LIRKI</td>
-        </tr>
-        <tr>
-          <td>R6</td>
-          <td>Reykjavik FIR via GUNPA</td>
-        </tr>
-        <tr>
-          <td>Z1</td>
-          <td>Stavanger FIR via PEPIN</td>
-        </tr>
-        <tr>
-          <td>Z2</td>
-          <td>Stavanger FIR via ORVIK</td>
-        </tr>
-        <tr>
-          <td>Z3</td>
-          <td>Stavanger FIR via KLONN</td>
-        </tr>
-        <tr>
-          <td>Z4</td>
-          <td>Stavanger FIR via ALOTI</td>
-        </tr>
-        <tr>
-          <td>Z5</td>
-          <td>Stavanger FIR via NIVUN</td>
-        </tr>
-      </table>
-
-    </div>
-  </div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
-  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.1.4/dist/js/tabulator.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/jquery.amaran/0.5.4/jquery.amaran.min.js"></script>
-  <script src="js/index.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.1.4/dist/js/tabulator.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.amaran/0.5.4/jquery.amaran.min.js"></script>
+    <script src="js/index.js"></script>
 
 </body>
 
