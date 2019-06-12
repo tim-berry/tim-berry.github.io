@@ -161,6 +161,9 @@ table = new Tabulator("#weather", {
   resizableColumns: false,
   responsiveLayout:"hide",
   layout: "fitColumns",
+  initialSort:[
+    {column:"icao", dir:"asc"}, //sort by this first
+    ],
   columns: [{
       title: "ICAO",
       field: "icao",
@@ -262,7 +265,7 @@ setInterval(ajaxCallUpdate, 300000); //300000 MS == 5 minutes
 function ajaxCallUpdate() {
   var tabledata = $.ajax({
     type: "GET",
-    url: "https://api.checkwx.com/metar/egll,egkk,eglc,egss,eggw,egcc,eggp,egnm,egbb,egnx,egff,eggd,eghh,eghh,eghi,egmc,eghq,egkb,egte/decoded/",
+    url: "https://api.checkwx.com/metar/egll,egkk,eglc,egss,eggw,egcc,eggp,egnm,egbb,egnx,egff,eggd,eghh,eghi,egmc,eghq,egkb,egte/decoded/",
     headers: {
       "X-API-Key": "f5616e0b457548cf07ac51b19a"
     },
