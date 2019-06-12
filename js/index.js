@@ -172,27 +172,6 @@ table = new Tabulator("#weather", {
       responsive:0
     },
     {
-      title: "Runway",
-      field: "wind.degrees",
-      headerSort: false,
-      minWidth:50,
-      responsive:0,
-      formatter: function(cell, formatterParams, onRendered) {
-        var icao = cell.getRow().getData().icao;
-        var winddir = cell.getValue();
-        var windspd = cell.getRow().getData().wind.speed_kts;
-        var rwydir = airportdata[icao].rwyhdg;
-
-        var tailwindcomp = (windspd * Math.cos((winddir-rwydir) * Math.PI / 180));
-
-        if (tailwindcomp >= -5) {
-          return pad(airportdata[icao].rwy1, 2)
-        } else {
-          return pad(airportdata[icao].rwy2, 2)
-        }
-      }
-    },
-    {
       title: "QNH",
       field: "barometer.mb",
       headerSort: false,
@@ -254,8 +233,28 @@ table = new Tabulator("#weather", {
       field: "ceiling.feet_agl",
       headerSort: false,
       responsive:2,
-    }
+    },
+    {
+      title: "Runway",
+      field: "wind.degrees",
+      headerSort: false,
+      minWidth:50,
+      responsive:0,
+      formatter: function(cell, formatterParams, onRendered) {
+        var icao = cell.getRow().getData().icao;
+        var winddir = cell.getValue();
+        var windspd = cell.getRow().getData().wind.speed_kts;
+        var rwydir = airportdata[icao].rwyhdg;
 
+        var tailwindcomp = (windspd * Math.cos((winddir-rwydir) * Math.PI / 180));
+
+        if (tailwindcomp >= -5) {
+          return pad(airportdata[icao].rwy1, 2)
+        } else {
+          return pad(airportdata[icao].rwy2, 2)
+        }
+      }
+    }
   ]
 });
 
